@@ -291,7 +291,7 @@ static NSString *kCORecordEmailAddress = @"emailAddress";
   for (CORecord *record in records) {
     for (CORecordEmail *email in record.emailAddresses) {
       NSDictionary *entry = [NSDictionary dictionaryWithObjectsAndKeys:
-                             record.fullName, kCORecordFullName,
+                             [record.fullName length] != 0 ? record.fullName : email.address, kCORecordFullName,
                              email.label, kCORecordEmailLabel,
                              email.address, kCORecordEmailAddress,
                              nil];
@@ -566,7 +566,7 @@ static BOOL containsString(NSString *haystack, NSString *needle) {
     
     NSIndexSet *resultSet = [records indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
       CORecord *record = (CORecord *)obj;
-      if (containsString(record.fullName, searchText)) {
+      if ([record.fullName length] != 0 && containsString(record.fullName, searchText)) {
         return YES;
       }
       for (CORecordEmail *email in record.emailAddresses) {
@@ -761,9 +761,12 @@ static BOOL containsString(NSString *haystack, NSString *needle) {
 
 - (NSString *)label {
   CFStringRef label = ABMultiValueCopyLabelAtIndex(emails_, ABMultiValueGetIndexForIdentifier(emails_, identifier_));
-  CFStringRef localizedLabel = ABAddressBookCopyLocalizedLabel(label);
-  CFRelease(label);
-  return CFBridgingRelease(localizedLabel);
+  if (label != NULL) {
+    CFStringRef localizedLabel = ABAddressBookCopyLocalizedLabel(label);
+    CFRelease(label);
+    return CFBridgingRelease(localizedLabel);
+  }
+  return @"email";
 }
 
 - (NSString *)address {

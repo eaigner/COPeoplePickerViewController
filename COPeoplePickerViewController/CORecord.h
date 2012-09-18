@@ -1,5 +1,5 @@
 //
-//  COAppDelegate.h
+//  CORecord.h
 //  COPeoplePickerViewController
 //
 //  Created by Erik Aigner on 08.10.11.
@@ -8,9 +8,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "COPerson.h"
 
-@interface COAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface CORecord : NSObject
+    @property (nonatomic, copy, readwrite) NSString *title;
+    @property (nonatomic, strong, readwrite) COPerson *person;
 @end

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8DF0BE371608958800FBE7D2 /* COPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0BE361608958800FBE7D2 /* COPerson.m */; };
+		8DF0BE3A160896CD00FBE7D2 /* CORecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0BE39160896CD00FBE7D2 /* CORecord.m */; };
+		8DF0BE3D1608977300FBE7D2 /* CORecordEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0BE3C1608977300FBE7D2 /* CORecordEmail.m */; };
+		8DF0BE40160897B600FBE7D2 /* CORecordPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0BE3F160897B600FBE7D2 /* CORecordPhone.m */; };
+		8DF0BE461608986D00FBE7D2 /* COEmailTableCellCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0BE451608986D00FBE7D2 /* COEmailTableCellCell.m */; };
+		8DF0BE611608A15700FBE7D2 /* COTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0BE601608A15700FBE7D2 /* COTokenField.m */; };
+		8DF0BE641608A24A00FBE7D2 /* COToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF0BE631608A24A00FBE7D2 /* COToken.m */; };
 		DC3CFB461440C73200B11E92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3CFB451440C73200B11E92 /* UIKit.framework */; };
 		DC3CFB481440C73200B11E92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3CFB471440C73200B11E92 /* Foundation.framework */; };
 		DC3CFB4A1440C73200B11E92 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3CFB491440C73200B11E92 /* CoreGraphics.framework */; };
@@ -20,6 +27,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8DF0BE351608958800FBE7D2 /* COPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COPerson.h; sourceTree = "<group>"; };
+		8DF0BE361608958800FBE7D2 /* COPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COPerson.m; sourceTree = "<group>"; };
+		8DF0BE38160896CD00FBE7D2 /* CORecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CORecord.h; sourceTree = "<group>"; };
+		8DF0BE39160896CD00FBE7D2 /* CORecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CORecord.m; sourceTree = "<group>"; };
+		8DF0BE3B1608977300FBE7D2 /* CORecordEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CORecordEmail.h; sourceTree = "<group>"; };
+		8DF0BE3C1608977300FBE7D2 /* CORecordEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CORecordEmail.m; sourceTree = "<group>"; };
+		8DF0BE3E160897B600FBE7D2 /* CORecordPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CORecordPhone.h; sourceTree = "<group>"; };
+		8DF0BE3F160897B600FBE7D2 /* CORecordPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CORecordPhone.m; sourceTree = "<group>"; };
+		8DF0BE441608986D00FBE7D2 /* COEmailTableCellCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COEmailTableCellCell.h; sourceTree = "<group>"; };
+		8DF0BE451608986D00FBE7D2 /* COEmailTableCellCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COEmailTableCellCell.m; sourceTree = "<group>"; };
+		8DF0BE5D1608A00E00FBE7D2 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		8DF0BE5F1608A15700FBE7D2 /* COTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COTokenField.h; sourceTree = "<group>"; };
+		8DF0BE601608A15700FBE7D2 /* COTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COTokenField.m; sourceTree = "<group>"; };
+		8DF0BE621608A24A00FBE7D2 /* COToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COToken.h; sourceTree = "<group>"; };
+		8DF0BE631608A24A00FBE7D2 /* COToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COToken.m; sourceTree = "<group>"; };
+		8DF0BE701608B3AD00FBE7D2 /* COTokenFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COTokenFieldDelegate.h; sourceTree = "<group>"; };
+		8DF0BE7E1608B62400FBE7D2 /* COPeoplePickerViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COPeoplePickerViewControllerDelegate.h; sourceTree = "<group>"; };
 		DC3CFB411440C73200B11E92 /* COPeoplePickerViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COPeoplePickerViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC3CFB451440C73200B11E92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DC3CFB471440C73200B11E92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -54,6 +78,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8DF0BE47160898E500FBE7D2 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				8DF0BE5D1608A00E00FBE7D2 /* Constants.h */,
+				8DF0BE351608958800FBE7D2 /* COPerson.h */,
+				8DF0BE361608958800FBE7D2 /* COPerson.m */,
+				8DF0BE38160896CD00FBE7D2 /* CORecord.h */,
+				8DF0BE39160896CD00FBE7D2 /* CORecord.m */,
+				8DF0BE3B1608977300FBE7D2 /* CORecordEmail.h */,
+				8DF0BE3C1608977300FBE7D2 /* CORecordEmail.m */,
+				8DF0BE3E160897B600FBE7D2 /* CORecordPhone.h */,
+				8DF0BE3F160897B600FBE7D2 /* CORecordPhone.m */,
+				8DF0BE441608986D00FBE7D2 /* COEmailTableCellCell.h */,
+				8DF0BE451608986D00FBE7D2 /* COEmailTableCellCell.m */,
+				8DF0BE621608A24A00FBE7D2 /* COToken.h */,
+				8DF0BE631608A24A00FBE7D2 /* COToken.m */,
+				8DF0BE5F1608A15700FBE7D2 /* COTokenField.h */,
+				8DF0BE601608A15700FBE7D2 /* COTokenField.m */,
+				8DF0BE701608B3AD00FBE7D2 /* COTokenFieldDelegate.h */,
+				8DF0BE7E1608B62400FBE7D2 /* COPeoplePickerViewControllerDelegate.h */,
+			);
+			name = classes;
+			sourceTree = "<group>";
+		};
 		DC3CFB361440C73200B11E92 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +135,7 @@
 		DC3CFB4B1440C73200B11E92 /* COPeoplePickerViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8DF0BE47160898E500FBE7D2 /* classes */,
 				DC3CFB541440C73200B11E92 /* COAppDelegate.h */,
 				DC3CFB551440C73200B11E92 /* COAppDelegate.m */,
 				DC3CFB5C1440C78100B11E92 /* COPeoplePickerViewController.h */,
@@ -172,6 +221,13 @@
 				DC3CFB521440C73200B11E92 /* main.m in Sources */,
 				DC3CFB561440C73200B11E92 /* COAppDelegate.m in Sources */,
 				DC3CFB5E1440C78100B11E92 /* COPeoplePickerViewController.m in Sources */,
+				8DF0BE371608958800FBE7D2 /* COPerson.m in Sources */,
+				8DF0BE3A160896CD00FBE7D2 /* CORecord.m in Sources */,
+				8DF0BE3D1608977300FBE7D2 /* CORecordEmail.m in Sources */,
+				8DF0BE40160897B600FBE7D2 /* CORecordPhone.m in Sources */,
+				8DF0BE461608986D00FBE7D2 /* COEmailTableCellCell.m in Sources */,
+				8DF0BE611608A15700FBE7D2 /* COTokenField.m in Sources */,
+				8DF0BE641608A24A00FBE7D2 /* COToken.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

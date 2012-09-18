@@ -3,10 +3,13 @@
 //  COPeoplePickerViewController
 //
 //  Created by Erik Aigner on 08.10.11.
-//  Copyright (c) 2011 chocomoko.com. All rights reserved.
+//  Improvements by Jordi Aragones on 18.09.12
+//  Copyright (c) 2011-2012. All rights reserved.
 //
 
 #import "COAppDelegate.h"
+
+#import "Constants.h"
 #import "COPeoplePickerViewController.h"
 
 #import <AddressBook/AddressBook.h>
@@ -24,8 +27,16 @@
   [self.window makeKeyAndVisible];
   
   COPeoplePickerViewController *picker = [COPeoplePickerViewController new];
-  picker.displayedProperties = [NSArray arrayWithObject:[NSNumber numberWithInteger:kABPersonEmailProperty]];
-  
+    
+  // just change this property to get Email or Phone
+  //picker.property = [NSNumber numberWithInt:kPropertyEmail];
+  picker.property = [NSNumber numberWithInt:kPropertyPhone];
+    
+  if ([picker.property isEqualToNumber:[NSNumber numberWithInt:kPropertyEmail]])
+      picker.displayedProperties = [NSArray arrayWithObject:[NSNumber numberWithInteger:kABPersonEmailProperty]];
+  else
+      picker.displayedProperties = [NSArray arrayWithObject:[NSNumber numberWithInteger:kABPersonPhoneProperty]];   
+        
   self.window.rootViewController = picker;
   
   return YES;

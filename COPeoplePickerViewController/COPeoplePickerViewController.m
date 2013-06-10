@@ -167,8 +167,9 @@ COSynth(shadowLayer)
 
 - (void)done:(id)sender {
 #pragma unused (sender)
-  if ([self.delegate respondsToSelector:@selector(peoplePickerViewControllerDidFinishPicking:)]) {
-    [self.delegate peoplePickerViewControllerDidFinishPicking:self];
+  id<COPeoplePickerViewControllerDelegate> delegate = self.delegate;
+  if ([delegate respondsToSelector:@selector(peoplePickerViewControllerDidFinishPicking:)]) {
+    [delegate peoplePickerViewControllerDidFinishPicking:self];
   }
 }
 
@@ -410,11 +411,11 @@ static NSString *kCORecordRef = @"record";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 #pragma unused (tableView, section)
-  return self.discreteSearchResults.count;
+  return (NSInteger)self.discreteSearchResults.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSDictionary *result = [self.discreteSearchResults objectAtIndex:indexPath.row];
+  NSDictionary *result = [self.discreteSearchResults objectAtIndex:(NSUInteger)indexPath.row];
   
   static NSString *ridf = @"resultCell";
   COEmailTableCell *cell = [tableView dequeueReusableCellWithIdentifier:ridf];
@@ -498,28 +499,29 @@ static NSString *kCOTokenFieldDetectorString = @"\u200B";
 
 - (void)addContact:(id)sender {
 #pragma unused (sender)
-  [self.tokenFieldDelegate tokenFieldDidPressAddContactButton:self];
+  id<COTokenFieldDelegate> tokenFieldDelegate = self.tokenFieldDelegate;
+  [tokenFieldDelegate tokenFieldDidPressAddContactButton:self];
 }
 
 - (CGFloat)computedRowHeight {
   CGFloat buttonHeight = CGRectGetHeight(self.addContactButton.frame);
-  return MAX(buttonHeight, (kTokenFieldPaddingY * 2.0 + kTokenFieldTokenHeight));
+  return MAX(buttonHeight, (CGFloat)(kTokenFieldPaddingY * 2.0 + kTokenFieldTokenHeight));
 }
 
 - (CGFloat)heightForNumberOfRows:(NSUInteger)rows {
-  return (CGFloat)rows * self.computedRowHeight + kTokenFieldPaddingY * 2.0;
+  return (CGFloat)rows * self.computedRowHeight + (CGFloat)kTokenFieldPaddingY * 2.0f;
 }
 
 - (void)layoutSubviews {
   NSUInteger row = 0;
-  NSInteger tokenCount = self.tokens.count;
+  NSInteger tokenCount = (NSInteger)self.tokens.count;
   
   CGFloat left = kTokenFieldPaddingX;
-  CGFloat maxLeft = CGRectGetWidth(self.bounds) - kTokenFieldPaddingX;
+  CGFloat maxLeft = CGRectGetWidth(self.bounds) - (CGFloat)kTokenFieldPaddingX;
   CGFloat rowHeight = self.computedRowHeight;
   
   for (NSInteger i=0; i<tokenCount; i++) {
-    COToken *token = [self.tokens objectAtIndex:i];
+    COToken *token = [self.tokens objectAtIndex:(NSUInteger)i];
     CGFloat right = left + CGRectGetWidth(token.bounds);
     if (right > maxLeft) {
       row++;
@@ -528,7 +530,7 @@ static NSString *kCOTokenFieldDetectorString = @"\u200B";
     
     // Adjust token frame
     CGRect tokenFrame = token.frame;
-    tokenFrame.origin = CGPointMake(left, (CGFloat)row * rowHeight + (rowHeight - CGRectGetHeight(tokenFrame)) / 2.0 + kTokenFieldPaddingY);
+    tokenFrame.origin = CGPointMake(left, (CGFloat)row * rowHeight + (rowHeight - CGRectGetHeight(tokenFrame)) / 2.0f + (CGFloat)kTokenFieldPaddingY);
     token.frame = tokenFrame;
     
     left += CGRectGetWidth(tokenFrame) + kTokenFieldPaddingX;
@@ -536,20 +538,20 @@ static NSString *kCOTokenFieldDetectorString = @"\u200B";
     [self addSubview:token];
   }
   
-  CGFloat maxLeftWithButton = maxLeft - kTokenFieldPaddingX - CGRectGetWidth(self.addContactButton.frame);
+  CGFloat maxLeftWithButton = maxLeft - (CGFloat)kTokenFieldPaddingX - CGRectGetWidth(self.addContactButton.frame);
   if (maxLeftWithButton - left < 50) {
     row++;
     left = kTokenFieldPaddingX;
   }
   
   CGRect textFieldFrame = self.textField.frame;
-  textFieldFrame.origin = CGPointMake(left, (CGFloat)row * rowHeight + (rowHeight - CGRectGetHeight(textFieldFrame)) / 2.0 + kTokenFieldPaddingY);
+  textFieldFrame.origin = CGPointMake(left, (CGFloat)row * rowHeight + (rowHeight - CGRectGetHeight(textFieldFrame)) / 2.0f + (CGFloat)kTokenFieldPaddingY);
   textFieldFrame.size = CGSizeMake(maxLeftWithButton - left, CGRectGetHeight(textFieldFrame));
   self.textField.frame = textFieldFrame;
   
   CGRect tokenFieldFrame = self.frame;
-  CGFloat minHeight = MAX(rowHeight, CGRectGetHeight(self.addContactButton.frame) + kTokenFieldPaddingY * 2.0);
-  tokenFieldFrame.size.height = MAX(minHeight, CGRectGetMaxY(textFieldFrame) + kTokenFieldPaddingY);
+  CGFloat minHeight = MAX(rowHeight, CGRectGetHeight(self.addContactButton.frame) + (CGFloat)kTokenFieldPaddingY * 2.0f);
+  tokenFieldFrame.size.height = MAX(minHeight, CGRectGetMaxY(textFieldFrame) + (CGFloat)kTokenFieldPaddingY);
   
   self.frame = tokenFieldFrame;
 }
@@ -638,12 +640,13 @@ static BOOL containsString(NSString *haystack, NSString *needle) {
 #pragma unused (sender)
   NSString *searchText = self.textWithoutDetector;
   NSArray *matchedRecords = [NSArray array];
+  id<COTokenFieldDelegate> tokenFieldDelegate = self.tokenFieldDelegate;
   if (searchText.length > 2) {
     // Generate new search dict only after a certain delay
     static NSDate *lastUpdated = nil;;
     static NSMutableArray *records = nil;
     if (records == nil || [lastUpdated timeIntervalSinceDate:[NSDate date]] < -10) {
-      ABAddressBookRef ab = [self.tokenFieldDelegate addressBookForTokenField:self];
+      ABAddressBookRef ab = [tokenFieldDelegate addressBookForTokenField:self];
       NSArray *people = CFBridgingRelease(ABAddressBookCopyArrayOfAllPeople(ab));
       records = [NSMutableArray new];
       for (id obj in people) {
@@ -671,7 +674,7 @@ static BOOL containsString(NSString *haystack, NSString *needle) {
     // Generate results to pass to the delegate
     matchedRecords = [records objectsAtIndexes:resultSet];
   }
-  [self.tokenFieldDelegate tokenField:self updateAddressBookSearchResults:matchedRecords];
+  [tokenFieldDelegate tokenField:self updateAddressBookSearchResults:matchedRecords];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -719,10 +722,10 @@ COSynth(container)
   
   UIFont *font = [UIFont systemFontOfSize:kTokenFieldFontSize];
   CGSize tokenSize = [title sizeWithFont:font];
-  tokenSize.width = MIN(kTokenFieldMaxTokenWidth, tokenSize.width);
+  tokenSize.width = MIN((CGFloat)kTokenFieldMaxTokenWidth, tokenSize.width);
   tokenSize.width += kTokenFieldPaddingX * 2.0;
   
-  tokenSize.height = MIN(kTokenFieldFontSize, tokenSize.height);
+  tokenSize.height = MIN((CGFloat)kTokenFieldFontSize, tokenSize.height);
   tokenSize.height += kTokenFieldPaddingY * 2.0;
   
   token.frame = (CGRect){CGPointZero, tokenSize};
@@ -734,7 +737,7 @@ COSynth(container)
 
 - (void)drawRect:(CGRect)rect {
 #pragma unused (rect)
-  CGFloat radius = CGRectGetHeight(self.bounds) / 2.0;
+  CGFloat radius = CGRectGetHeight(self.bounds) / 2.0f;
   
   UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:radius];
   
@@ -766,10 +769,10 @@ COSynth(container)
   CGContextRestoreGState(ctx);
   
   if (self.highlighted) {
-    [[UIColor colorWithRed:0.275 green:0.478 blue:0.871 alpha:1.0] set];
+    [[UIColor colorWithRed:0.275f green:0.478f blue:0.871f alpha:1.0f] set];
   }
   else {
-    [[UIColor colorWithRed:0.667 green:0.757 blue:0.914 alpha:1.0] set];
+    [[UIColor colorWithRed:0.667f green:0.757f blue:0.914f alpha:1.0f] set];
   }
   
   path = [UIBezierPath bezierPathWithRoundedRect:CGRectInset(self.bounds, 0.5, 0.5) cornerRadius:radius];
@@ -785,8 +788,8 @@ COSynth(container)
   
   UIFont *titleFont = [UIFont systemFontOfSize:kTokenFieldFontSize];
   CGSize titleSize = [self.title sizeWithFont:titleFont];
-  CGRect titleFrame = CGRectMake((CGRectGetWidth(self.bounds) - titleSize.width) / 2.0,
-                                 (CGRectGetHeight(self.bounds) - titleSize.height) / 2.0,
+  CGRect titleFrame = CGRectMake((CGRectGetWidth(self.bounds) - titleSize.width) / 2.0f,
+                                 (CGRectGetHeight(self.bounds) - titleSize.height) / 2.0f,
                                  titleSize.width,
                                  titleSize.height);
   
@@ -857,7 +860,11 @@ COSynth(container)
                                                       identifier:ABMultiValueGetIdentifierAtIndex(emails, i)];
     [addresses addObject:email];
   }
-  CFRelease(emails);
+  
+  if (emails != NULL) {
+    CFRelease(emails);
+  }
+
   return [NSArray arrayWithArray:addresses];
 }
 

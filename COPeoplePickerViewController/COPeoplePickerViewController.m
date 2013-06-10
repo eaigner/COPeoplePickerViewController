@@ -166,6 +166,7 @@ COSynth(shadowLayer)
 }
 
 - (void)done:(id)sender {
+#pragma unused (sender)
   if ([self.delegate respondsToSelector:@selector(peoplePickerViewControllerDidFinishPicking:)]) {
     [self.delegate peoplePickerViewControllerDidFinishPicking:self];
   }
@@ -236,6 +237,7 @@ COSynth(shadowLayer)
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+#pragma unused (animated)
   [self.tokenField.textField becomeFirstResponder];
 }
 
@@ -275,6 +277,7 @@ COSynth(shadowLayer)
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+#pragma unused (object, change, context)
   if ([keyPath isEqualToString:kTokenFieldFrameKeyPath]) {
     [self layoutTokenFieldAndSearchTable];
   }
@@ -311,6 +314,7 @@ COSynth(shadowLayer)
 #pragma mark - COTokenFieldDelegate 
 
 - (void)tokenFieldDidPressAddContactButton:(COTokenField *)tokenField {
+#pragma unused (tokenField)
   ABPeoplePickerNavigationController *picker = [ABPeoplePickerNavigationController new];
   picker.addressBook = self.addressBookRef;
   picker.peoplePickerDelegate = self;
@@ -326,6 +330,7 @@ COSynth(shadowLayer)
 }
 
 - (ABAddressBookRef)addressBookForTokenField:(COTokenField *)tokenField {
+#pragma unused (tokenField)
   return self.addressBookRef;
 }
 
@@ -335,6 +340,7 @@ static NSString *kCORecordEmailAddress = @"emailAddress";
 static NSString *kCORecordRef = @"record";
 
 - (void)tokenField:(COTokenField *)tokenField updateAddressBookSearchResults:(NSArray *)records {
+#pragma unused (tokenField)
   // Split the search results into one email value per row
   NSMutableArray *results = [NSMutableArray new];
 #if TARGET_IPHONE_SIMULATOR
@@ -377,10 +383,12 @@ static NSString *kCORecordRef = @"record";
 #pragma mark - ABPeoplePickerNavigationControllerDelegate
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+#pragma unused (peoplePicker, person)
   return YES;
 }
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+#pragma unused (peoplePicker)
   ABMutableMultiValueRef multi = ABRecordCopyValue(person, property);
   NSString *email = CFBridgingRelease(ABMultiValueCopyValueAtIndex(multi, identifier));
   CFRelease(multi);
@@ -394,12 +402,14 @@ static NSString *kCORecordRef = @"record";
 }
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
+#pragma unused (peoplePicker)
   [self dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#pragma unused (tableView, section)
   return self.discreteSearchResults.count;
 }
 
@@ -487,6 +497,7 @@ static NSString *kCOTokenFieldDetectorString = @"\u200B";
 }
 
 - (void)addContact:(id)sender {
+#pragma unused (sender)
   [self.tokenFieldDelegate tokenFieldDidPressAddContactButton:self];
 }
 
@@ -607,6 +618,7 @@ static NSString *kCOTokenFieldDetectorString = @"\u200B";
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+#pragma unused (touches, event)
   [self selectToken:nil];
 }
 
@@ -623,6 +635,7 @@ static BOOL containsString(NSString *haystack, NSString *needle) {
 }
 
 - (void)tokenInputChanged:(id)sender {
+#pragma unused (sender)
   NSString *searchText = self.textWithoutDetector;
   NSArray *matchedRecords = [NSArray array];
   if (searchText.length > 2) {
@@ -642,6 +655,7 @@ static BOOL containsString(NSString *haystack, NSString *needle) {
     }
     
     NSIndexSet *resultSet = [records indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+#pragma unused (idx, stop)
       COPerson *record = (COPerson *)obj;
       if ([record.fullName length] != 0 && containsString(record.fullName, searchText)) {
         return YES;
@@ -663,6 +677,7 @@ static BOOL containsString(NSString *haystack, NSString *needle) {
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+#pragma unused (range)
   if (string.length == 0 && [textField.text isEqualToString:kCOTokenFieldDetectorString]) {
     [self modifySelectedToken];
     return NO;
@@ -718,6 +733,7 @@ COSynth(container)
 }
 
 - (void)drawRect:(CGRect)rect {
+#pragma unused (rect)
   CGFloat radius = CGRectGetHeight(self.bounds) / 2.0;
   
   UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:radius];

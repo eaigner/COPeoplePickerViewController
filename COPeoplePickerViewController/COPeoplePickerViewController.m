@@ -46,6 +46,7 @@
 - (void)tokenFieldDidPressAddContactButton:(COTokenField *)tokenField;
 - (ABAddressBookRef)addressBookForTokenField:(COTokenField *)tokenField;
 - (void)tokenField:(COTokenField *)tokenField updateAddressBookSearchResults:(NSArray *)records;
+- (void)tokenField:(COTokenField *)tokenField searchingModeChanged:(BOOL)isInSearchingMode;
 
 @end
 
@@ -367,12 +368,6 @@ static NSString *kCORecordRef = @"record";
   
   // Update the table
   [self.searchTableView reloadData];
-  if (self.discreteSearchResults.count > 0) {
-    self.searchTableView.hidden = NO;  
-  }
-  else {
-    self.searchTableView.hidden = YES;
-  }
   [self layoutTokenFieldAndSearchTable];
 }
 
@@ -381,6 +376,12 @@ static NSString *kCORecordRef = @"record";
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
 #pragma unused (peoplePicker, person)
   return YES;
+}
+
+- (void)tokenField:(COTokenField *)tokenField searchingModeChanged:(BOOL)isInSearchingMode
+{
+#pragma unused (tokenField)
+  self.searchTableView.hidden = !isInSearchingMode;
 }
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
@@ -611,6 +612,8 @@ static NSString *kCOTokenFieldDetectorString = @"\u200B";
   [token addTarget:self action:@selector(selectToken:) forControlEvents:UIControlEventTouchUpInside];
   [self.tokens addObject:token];
   self.textField.text = kCOTokenFieldDetectorString;
+  id<COTokenFieldDelegate> tokenFieldDelegate = self.tokenFieldDelegate;
+  [tokenFieldDelegate tokenField:self searchingModeChanged:NO];
   [self setNeedsLayout];
 }
 
@@ -669,6 +672,10 @@ static BOOL containsString(NSString *haystack, NSString *needle) {
     // Generate results to pass to the delegate
     matchedRecords = [records objectsAtIndexes:resultSet];
   }
+  
+  [tokenFieldDelegate tokenField:self
+            searchingModeChanged:[self.textField.text length] > 1];
+  
   [tokenFieldDelegate tokenField:self updateAddressBookSearchResults:matchedRecords];
 }
 

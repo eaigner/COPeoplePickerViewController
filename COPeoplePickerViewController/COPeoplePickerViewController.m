@@ -139,6 +139,33 @@ COSynth(displayedProperties)
 COSynth(discreteSearchResults)
 COSynth(shadowLayer)
 
+- (id)init {
+  self = [super init];
+  if (self) {
+    [self initializeAddressBook];
+  }
+  return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  if (self) {
+    [self initializeAddressBook];
+  }
+  return self;
+}
+
+- (void)initializeAddressBook {
+  keyboardFrame_ = CGRectNull;
+  // DEVNOTE: A workaround to force initialization of ABPropertyIDs.
+  // If we don't create the address book here and try to set |displayedProperties| first
+  // all ABPropertyIDs will default to '0'.
+  //
+  // Filed rdar://10526251
+  //
+  addressBook_ = ABAddressBookCreate();
+}
+
 - (void)dealloc {
   if (addressBook_ != NULL) {
     CFRelease(addressBook_);
@@ -160,15 +187,6 @@ COSynth(shadowLayer)
 
 - (void)loadView {
   [super loadView];
-    
-  keyboardFrame_ = CGRectNull;
-  // DEVNOTE: A workaround to force initialization of ABPropertyIDs.
-  // If we don't create the address book here and try to set |displayedProperties| first
-  // all ABPropertyIDs will default to '0'.
-  //
-  // Filed rdar://10526251
-  //
-  addressBook_ = ABAddressBookCreate();
   
   UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
                                                                 style:UIBarButtonItemStyleDone
@@ -177,7 +195,12 @@ COSynth(shadowLayer)
   self.navigationItem.rightBarButtonItem = rightItem;
 }
 
-- (void)viewDidLoad {  
+- (void)viewDidLoad {
+  
+  NSAssert(addressBook_,
+           @"The address book not initialized. "
+           "Make sure the initializeAddressBook method is called.");
+  
   // Configure content view
   self.view.backgroundColor = [UIColor colorWithRed:0.859 green:0.886 blue:0.925 alpha:1.0];
   

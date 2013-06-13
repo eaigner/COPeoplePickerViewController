@@ -139,21 +139,6 @@ COSynth(displayedProperties)
 COSynth(discreteSearchResults)
 COSynth(shadowLayer)
 
-- (id)init {
-  self = [super init];
-  if (self) {
-    keyboardFrame_ = CGRectNull;
-    // DEVNOTE: A workaround to force initialization of ABPropertyIDs.
-    // If we don't create the address book here and try to set |displayedProperties| first
-    // all ABPropertyIDs will default to '0'.
-    //
-    // Filed rdar://10526251
-    //
-    addressBook_ = ABAddressBookCreate();
-  }
-  return self;
-}
-
 - (void)dealloc {
   if (addressBook_ != NULL) {
     CFRelease(addressBook_);
@@ -175,6 +160,16 @@ COSynth(shadowLayer)
 
 - (void)loadView {
   [super loadView];
+    
+  keyboardFrame_ = CGRectNull;
+  // DEVNOTE: A workaround to force initialization of ABPropertyIDs.
+  // If we don't create the address book here and try to set |displayedProperties| first
+  // all ABPropertyIDs will default to '0'.
+  //
+  // Filed rdar://10526251
+  //
+  addressBook_ = ABAddressBookCreate();
+  
   UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", nil)
                                                                 style:UIBarButtonItemStyleDone
                                                                target:self

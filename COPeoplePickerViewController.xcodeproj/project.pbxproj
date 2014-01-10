@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520A09D1176F235D00E57F99 /* COToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 520A09D0176F235D00E57F99 /* COToken.m */; };
+		520A09D4176F23CB00E57F99 /* COEmailTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 520A09D3176F23CB00E57F99 /* COEmailTableCell.m */; };
+		520A09D7176F241D00E57F99 /* COTokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 520A09D6176F241D00E57F99 /* COTokenField.m */; };
+		520A09DA176F244900E57F99 /* CORecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 520A09D9176F244900E57F99 /* CORecord.m */; };
+		520A09DD176F24B300E57F99 /* CORecordEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 520A09DC176F24B300E57F99 /* CORecordEmail.m */; };
+		520A09E0176F259A00E57F99 /* COPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 520A09DF176F259A00E57F99 /* COPerson.m */; };
 		52EAF5E417662289006D8A6B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52EAF5E317662289006D8A6B /* Default-568h@2x.png */; };
 		DC3CFB461440C73200B11E92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3CFB451440C73200B11E92 /* UIKit.framework */; };
 		DC3CFB481440C73200B11E92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3CFB471440C73200B11E92 /* Foundation.framework */; };
@@ -21,6 +27,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		520A09CF176F235D00E57F99 /* COToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COToken.h; sourceTree = "<group>"; };
+		520A09D0176F235D00E57F99 /* COToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COToken.m; sourceTree = "<group>"; };
+		520A09D2176F23CB00E57F99 /* COEmailTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COEmailTableCell.h; sourceTree = "<group>"; };
+		520A09D3176F23CB00E57F99 /* COEmailTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COEmailTableCell.m; sourceTree = "<group>"; };
+		520A09D5176F241D00E57F99 /* COTokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COTokenField.h; sourceTree = "<group>"; };
+		520A09D6176F241D00E57F99 /* COTokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COTokenField.m; sourceTree = "<group>"; };
+		520A09D8176F244900E57F99 /* CORecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CORecord.h; sourceTree = "<group>"; };
+		520A09D9176F244900E57F99 /* CORecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CORecord.m; sourceTree = "<group>"; };
+		520A09DB176F24B300E57F99 /* CORecordEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CORecordEmail.h; sourceTree = "<group>"; };
+		520A09DC176F24B300E57F99 /* CORecordEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CORecordEmail.m; sourceTree = "<group>"; };
+		520A09DE176F259A00E57F99 /* COPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COPerson.h; sourceTree = "<group>"; };
+		520A09DF176F259A00E57F99 /* COPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COPerson.m; sourceTree = "<group>"; };
 		52EAF5E317662289006D8A6B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		DC3CFB411440C73200B11E92 /* COPeoplePickerViewController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = COPeoplePickerViewController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC3CFB451440C73200B11E92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -95,6 +113,18 @@
 				DC3CFB5C1440C78100B11E92 /* COPeoplePickerViewController.h */,
 				DC3CFB5D1440C78100B11E92 /* COPeoplePickerViewController.m */,
 				DC3CFB4C1440C73200B11E92 /* Supporting Files */,
+				520A09CF176F235D00E57F99 /* COToken.h */,
+				520A09D0176F235D00E57F99 /* COToken.m */,
+				520A09D2176F23CB00E57F99 /* COEmailTableCell.h */,
+				520A09D3176F23CB00E57F99 /* COEmailTableCell.m */,
+				520A09D5176F241D00E57F99 /* COTokenField.h */,
+				520A09D6176F241D00E57F99 /* COTokenField.m */,
+				520A09D8176F244900E57F99 /* CORecord.h */,
+				520A09D9176F244900E57F99 /* CORecord.m */,
+				520A09DB176F24B300E57F99 /* CORecordEmail.h */,
+				520A09DC176F24B300E57F99 /* CORecordEmail.m */,
+				520A09DE176F259A00E57F99 /* COPerson.h */,
+				520A09DF176F259A00E57F99 /* COPerson.m */,
 			);
 			path = COPeoplePickerViewController;
 			sourceTree = "<group>";
@@ -176,6 +206,12 @@
 				DC3CFB521440C73200B11E92 /* main.m in Sources */,
 				DC3CFB561440C73200B11E92 /* COAppDelegate.m in Sources */,
 				DC3CFB5E1440C78100B11E92 /* COPeoplePickerViewController.m in Sources */,
+				520A09D1176F235D00E57F99 /* COToken.m in Sources */,
+				520A09D4176F23CB00E57F99 /* COEmailTableCell.m in Sources */,
+				520A09D7176F241D00E57F99 /* COTokenField.m in Sources */,
+				520A09DA176F244900E57F99 /* CORecord.m in Sources */,
+				520A09DD176F24B300E57F99 /* CORecordEmail.m in Sources */,
+				520A09E0176F259A00E57F99 /* COPerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +320,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = "COPeoplePickerViewController/COPeoplePickerViewController-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
 					"-Wall",
@@ -329,6 +366,7 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				INFOPLIST_FILE = "COPeoplePickerViewController/COPeoplePickerViewController-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
 					"-Wall",
